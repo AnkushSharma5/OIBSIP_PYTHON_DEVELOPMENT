@@ -1,0 +1,38 @@
+import time
+
+def greet():
+    print("Hello! I am your voice assistant. How can I help you today?")
+
+def tell_time():
+    current_time = time.strftime("%H:%M:%S", time.localtime())
+    print(f"The current time is {current_time}.")
+
+def tell_joke():
+    print("Why did the scarecrow win an award? Because he was outstanding in his field!")
+
+def exit_assistant():
+    print("Goodbye! Have a great day!")
+    return True
+
+def main():
+    commands = {
+        "greet": greet,
+        "time": tell_time,
+        "joke": tell_joke,
+        "exit": exit_assistant,
+    }
+
+    greet()
+    
+    while True:
+        user_input = input("You: ").strip().lower()
+        
+        if user_input in commands:
+            exit_program = commands[user_input]()
+            if exit_program:
+                break
+        else:
+            print("Sorry, I didn't understand that. You can say 'greet', 'time', 'joke', or 'exit'.")
+
+if __name__ == "__main__":
+    main()
